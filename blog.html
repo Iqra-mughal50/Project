@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - My Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Include base styles from other pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        /* Updated Navigation styles */
+        nav {
+            background-color: #1a237e;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff4081;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Updated logo styles */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            justify-self: start;
+        }
+
+        /* Updated logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-self: start;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        
+        .cta-button {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: #f50057;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+
+        /* Blog specific styles */
+        .blog-hero {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            margin-top: 60px;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+
+        .featured-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .featured-post img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 2rem;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta i {
+            color: #1a237e;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-content h3 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #ff4081;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .sidebar-widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .search-widget input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .categories-list {
+            list-style: none;
+        }
+
+        .categories-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .categories-list a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+
+        .categories-list a:hover {
+            color: #1a237e;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #1a237e;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination a {
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #1a237e;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background: #1a237e;
+            color: white;
+        }
+
+        .pagination .active {
+            background: #1a237e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <h2 class="logo-text">LOGO</h2>
+            <img src="logo.png" alt="Logo" class="logo-image">
+        </div>
+        <div class="nav-links">
+            <a href="/index.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/services.html">Services</a>
+            <a href="/blog.html" style="color: #ff4081;">Blog</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <a href="#get-started" class="cta-button">Get Started</a>
+    </nav>
+
+    <section class="blog-hero">
+        <h1>Our Blog</h1>
+        <p>Stay updated with the latest insights and news</p>
+    </section>
+
+    <div class="blog-container">
+        <main>
+            <article class="featured-post">
+                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Featured Post">
+                <div class="featured-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-user"></i> John Doe</span>
+                        <span><i class="far fa-folder"></i> Technology</span>
+                    </div>
+                    <h2>The Future of Web Development in 2024</h2>
+                    <p>Explore the latest trends and technologies shaping the future of web development. From AI integration to advanced frameworks, discover what's next in the digital world.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <div class="post-grid">
+                <article class="post-card">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Blog Post">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> March 14, 2024</span>
+                        </div>
+                        <h3>Essential Web Design Principles</h3>
+                        <p>Learn the fundamental principles that make websites both beautiful and functional.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <!-- Add more post cards -->
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">Next</a>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-widget search-widget">
+                <h3>Search</h3>
+                <input type="text" placeholder="Search blog...">
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">Technology <span>(12)</span></a></li>
+                    <li><a href="#">Design <span>(8)</span></a></li>
+                    <li><a href="#">Development <span>(15)</span></a></li>
+                    <li><a href="#">Business <span>(6)</span></a></li>
+                    <li><a href="#">Marketing <span>(4)</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Popular Tags</h3>
+                <div class="tag-cloud">
+                    <a href="#" class="tag">Web Design</a>
+                    <a href="#" class="tag">Development</a>
+                    <a href="#" class="tag">UI/UX</a>
+                    <a href="#" class="tag">Mobile</a>
+                    <a href="#" class="tag">Tech</a>
+                    <a href="#" class="tag">Business</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <!-- Include footer content -->
+    </footer>
+</body>
+</html> 

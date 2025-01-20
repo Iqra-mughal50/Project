@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - My Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Include base styles from other pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        /* Navigation styles (same as other pages) */
+        nav {
+            background-color: #1a237e;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 250px 1fr 200px;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #3949ab;
+            border-radius: 4px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            justify-self: start;
+        }
+
+        /* Updated logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-self: start;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Services page specific styles */
+        .services-hero {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            margin-top: 60px;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #1a237e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .popular-plan {
+            position: relative;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ff4081;
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-list li i {
+            color: #4CAF50;
+            margin-right: 0.5rem;
+        }
+
+        .cta-button {
+            background: #ff4081;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            background: #f50057;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #1a237e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .testimonial-slider {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 4rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Include footer styles from other pages */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <h2 class="logo-text">LOGO</h2>
+            <img src="logo.png" alt="Logo" class="logo-image">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="#get-started" class="cta-button">Get Started</a>
+    </nav>
+
+    <section class="services-hero">
+        <h1>Our Services</h1>
+        <p>Discover how we can help transform your business</p>
+    </section>
+
+    <div class="services-container">
+        <section class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites built with the latest technologies to help your business grow online.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile Apps</h3>
+                <p>Native and cross-platform mobile applications that deliver exceptional user experience.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>SEO Optimization</h3>
+                <p>Improve your website's visibility and rank higher in search engine results.</p>
+            </div>
+        </section>
+
+        <section class="pricing-plans">
+            <div class="pricing-card">
+                <h3>Basic Plan</h3>
+                <div class="price">$29<span>/month</span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> 5 Pages Website</li>
+                    <li><i class="fas fa-check"></i> Basic SEO</li>
+                    <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                    <li><i class="fas fa-check"></i> Contact Form</li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </div>
+            <div class="pricing-card popular-plan">
+                <div class="popular-badge">Popular</div>
+                <h3>Professional</h3>
+                <div class="price">$99<span>/month</span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> 10 Pages Website</li>
+                    <li><i class="fas fa-check"></i> Advanced SEO</li>
+                    <li><i class="fas fa-check"></i> E-commerce Integration</li>
+                    <li><i class="fas fa-check"></i> Custom Features</li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$199<span>/month</span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Unlimited Pages</li>
+                    <li><i class="fas fa-check"></i> Premium SEO</li>
+                    <li><i class="fas fa-check"></i> Custom Development</li>
+                    <li><i class="fas fa-check"></i> 24/7 Support</li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </div>
+        </section>
+
+        <section class="process-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Consultation</h3>
+                <p>We discuss your requirements and plan the perfect solution for your business.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Design</h3>
+                <p>Our team creates beautiful and functional designs tailored to your needs.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Development</h3>
+                <p>We build your solution using the latest technologies and best practices.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Launch</h3>
+                <p>Your project goes live with our full support and maintenance.</p>
+            </div>
+        </section>
+
+        <section class="testimonial-slider">
+            <h2 style="text-align: center; margin-bottom: 2rem;">What Our Clients Say</h2>
+            <!-- Add testimonials here -->
+        </section>
+    </div>
+
+    <footer>
+        <!-- Include footer content -->
+    </footer>
+</body>
+</html> 
