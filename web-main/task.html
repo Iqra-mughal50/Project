@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Zabtech Web Class</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="task.html">Tasks</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button>Registration</button>
+        </nav>
+
+
+    </header>
+    <div class="container">
+        <div class="hero-section">
+            <img src="https://cdn-icons-png.flaticon.com/512/6194/6194029.png" alt="Task Manager Hero" class="hero-image">
+            <div class="header">
+                <h1>Task Master Pro</h1>
+                <p>Your Ultimate Task Management Solution</p>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1087/1087927.png" alt="Organization" class="feature-icon">
+                <h3 class="feature-title">Stay Organized</h3>
+                <p class="feature-description">Keep your tasks organized with categories, priorities, and due dates</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2620/2620576.png" alt="Progress" class="feature-icon">
+                <h3 class="feature-title">Track Progress</h3>
+                <p class="feature-description">Monitor your productivity with detailed statistics and progress tracking</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1584/1584892.png" alt="Reminders" class="feature-icon">
+                <h3 class="feature-title">Never Miss a Task</h3>
+                <p class="feature-description">Set due dates and categories to keep your tasks on track</p>
+            </div>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completionRate">0%</div>
+                <div class="stat-label">Completion Rate</div>
+            </div>
+        </div>
+
+        <div class="categories-section">
+            <h2 class="task-section-title">Student Registration</h2>
+            <form class="registration-form" id="studentForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="studentName" placeholder="Student Name" required>
+                    <input type="text" class="form-control" id="studentId" placeholder="Student ID/Roll Number" required>
+                    <select class="form-control" id="studentClass">
+                        <option value="">Select Class</option>
+                        <option value="class-10">Class 10</option>
+                        <option value="class-11">Class 11</option>
+                        <option value="class-12">Class 12</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Register Student</button>
+            </form>
+
+            <h2 class="task-section-title">Category Management</h2>
+            <form class="category-form" id="categoryForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="newCategory" placeholder="New Category Name" required>
+                    <select class="form-control" id="categoryColor">
+                        <option value="#4CAF50">Green</option>
+                        <option value="#2196F3">Blue</option>
+                        <option value="#F44336">Red</option>
+                        <option value="#FFC107">Yellow</option>
+                        <option value="#9C27B0">Purple</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
+            </form>
+            <div class="category-tags" id="categoryTags">
+                <span class="category-tag active" data-category="all">All</span>
+                <!-- Categories will be added here dynamically -->
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+            </div>
+            <div class="filter-buttons">
+                <button class="btn btn-outline active" data-filter="all">All</button>
+                <button class="btn btn-outline" data-filter="active">Active</button>
+                <button class="btn btn-outline" data-filter="completed">Completed</button>
+            </div>
+        </div>
+
+        <form class="task-form" id="taskForm">
+            <div class="input-group">
+                <input type="text" class="form-control" id="taskInput" placeholder="What needs to be done?" required>
+                <select class="form-control" id="categoryInput">
+                    <option value="">Select Category</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="health">Health</option>
+                    <option value="education">Education</option>
+                </select>
+                <select class="form-control" id="priorityInput">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <input type="date" class="form-control" id="dueDateInput">
+            </div>
+            <div class="input-group">
+                <textarea class="form-control" id="taskDescription" placeholder="Add description (optional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <div class="student-list" id="studentList">
+            <!-- Students will be added here dynamically -->
+        </div>
+
+        <ul class="task-list" id="taskList"></ul>
+    </div>
+
+    <div class="quick-add" onclick="document.getElementById('taskInput').focus()">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <script>
+        // Initialize tasks from localStorage or empty array
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        // DOM Elements
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('[data-filter]');
+
+        // Event Listeners
+        taskForm.addEventListener('submit', addTask);
+        searchInput.addEventListener('input', filterTasks);
+        filterButtons.forEach(btn => btn.addEventListener('click', applyFilter));
+
+        // Load tasks on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTasks();
+            updateStats();
+        });
+
+        function addTask(e) {
+            e.preventDefault();
+            const taskInput = document.getElementById('taskInput');
+            const priorityInput = document.getElementById('priorityInput');
+            const dueDateInput = document.getElementById('dueDateInput');
+
+            const task = {
+                id: Date.now(),
+                text: taskInput.value.trim(),
+                completed: false,
+                priority: priorityInput.value,
+                dueDate: dueDateInput.value,
+                createdAt: new Date().toISOString()
+            };
+
+            tasks.push(task);
+            saveTasks();
+            renderTasks();
+            taskForm.reset();
+        }
+
+        function renderTasks() {
+            taskList.innerHTML = '';
+            updateStats();
+            
+            if (tasks.length === 0) {
+                taskList.innerHTML = `
+                    <div class="empty-state">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486831.png" alt="No Tasks">
+                        <p class="empty-message">No tasks yet! Add your first task to get started.</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('taskInput').focus()">
+                            Add Your First Task
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `task-item priority-${task.priority} ${task.completed ? 'completed' : ''}`;
+                
+                const dueDate = task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No due date';
+                
+                li.innerHTML = `
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})">
+                    <div class="task-content">
+                        <div class="task-title">${task.text}</div>
+                        <div class="task-details">${task.description || ''}</div>
+                        <div class="task-meta">
+                            <span><i class="far fa-calendar"></i> ${dueDate}</span>
+                            <span><i class="fas fa-tag"></i> ${task.category || 'Uncategorized'}</span>
+                            <span><i class="fas fa-flag"></i> ${task.priority}</span>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn-icon btn-edit" onclick="editTask(${task.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon btn-delete" onclick="deleteTask(${task.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                taskList.appendChild(li);
+            });
+        }
+
+        function toggleTask(id) {
+            tasks = tasks.map(task => 
+                task.id === id ? {...task, completed: !task.completed} : task
+            );
+            saveTasks();
+            renderTasks();
+        }
+
+        function deleteTask(id) {
+            if (confirm('Are you sure you want to delete this task?')) {
+                tasks = tasks.filter(task => task.id !== id);
+                saveTasks();
+                renderTasks();
+            }
+        }
+
+        function editTask(id) {
+            const task = tasks.find(t => t.id === id);
+            const newText = prompt('Edit task:', task.text);
+            if (newText !== null && newText.trim() !== '') {
+                tasks = tasks.map(t => 
+                    t.id === id ? {...t, text: newText.trim()} : t
+                );
+                saveTasks();
+                renderTasks();
+            }
+        }
+
+        function filterTasks() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const taskItems = document.querySelectorAll('.task-item');
+            
+            taskItems.forEach(item => {
+                const taskText = item.querySelector('.task-title').textContent.toLowerCase();
+                item.style.display = taskText.includes(searchTerm) ? 'flex' : 'none';
+            });
+        }
+
+        function applyFilter(e) {
+            const filter = e.target.dataset.filter;
+            
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            const taskItems = document.querySelectorAll('.task-item');
+            taskItems.forEach(item => {
+                switch(filter) {
+                    case 'active':
+                        item.style.display = item.classList.contains('completed') ? 'none' : 'flex';
+                        break;
+                    case 'completed':
+                        item.style.display = item.classList.contains('completed') ? 'flex' : 'none';
+                        break;
+                    default:
+                        item.style.display = 'flex';
+                }
+            });
+        }
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function updateStats() {
+            const total = tasks.length;
+            const completed = tasks.filter(task => task.completed).length;
+            const pending = total - completed;
+            const rate = total ? Math.round((completed / total) * 100) : 0;
+
+            document.getElementById('totalTasks').textContent = total;
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('pendingTasks').textContent = pending;
+            document.getElementById('completionRate').textContent = `${rate}%`;
+            document.getElementById('progressBar').style.width = `${rate}%`;
+        }
+
+        // Add category filtering
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.querySelectorAll('.category-tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.dataset.category;
+                
+                const taskItems = document.querySelectorAll('.task-item');
+                taskItems.forEach(item => {
+                    if (category === 'all') {
+                        item.style.display = 'flex';
+                    } else {
+                        const taskCategory = item.querySelector('.task-meta').textContent.includes(category);
+                        item.style.display = taskCategory ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Initialize students array
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let categories = JSON.parse(localStorage.getItem('categories')) || [
+            { name: 'Work', color: '#4CAF50' },
+            { name: 'Personal', color: '#2196F3' },
+            { name: 'Shopping', color: '#F44336' },
+            { name: 'Health', color: '#FFC107' },
+            { name: 'Education', color: '#9C27B0' }
+        ];
+
+        // Student Form Handler
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const studentName = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            const studentClass = document.getElementById('studentClass').value;
+
+            const student = {
+                id: Date.now(),
+                name: studentName,
+                studentId: studentId,
+                class: studentClass
+            };
+
+            students.push(student);
+            saveStudents();
+            renderStudents();
+            this.reset();
+        });
+
+        // Category Form Handler
+        document.getElementById('categoryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const categoryName = document.getElementById('newCategory').value;
+            const categoryColor = document.getElementById('categoryColor').value;
+
+            const category = {
+                name: categoryName,
+                color: categoryColor
+            };
+
+            categories.push(category);
+            saveCategories();
+            renderCategories();
+            this.reset();
+        });
+
+        function renderStudents() {
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+
+            students.forEach(student => {
+                const div = document.createElement('div');
+                div.className = 'student-card';
+                div.innerHTML = `
+                    <button class="delete-student" onclick="deleteStudent(${student.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <div class="student-name">${student.name}</div>
+                    <div class="student-id">ID: ${student.studentId}</div>
+                    <div class="student-class">Class: ${student.class}</div>
+                `;
+                studentList.appendChild(div);
+            });
+        }
+
+        function renderCategories() {
+            const categoryTags = document.getElementById('categoryTags');
+            categoryTags.innerHTML = '<span class="category-tag active" data-category="all">All</span>';
+
+            categories.forEach(category => {
+                const span = document.createElement('span');
+                span.className = 'category-tag';
+                span.dataset.category = category.name.toLowerCase();
+                span.style.backgroundColor = category.color;
+                span.style.color = 'white';
+                span.textContent = category.name;
+                categoryTags.appendChild(span);
+            });
+
+            // Update category select in task form
+            const categoryInput = document.getElementById('categoryInput');
+            categoryInput.innerHTML = '<option value="">Select Category</option>';
+            categories.forEach(category => {
+             categoryInput.innerHTML += `<option value="${category.name.toLowerCase()}">${category.name}</option>`;
+            });
+        }
+
+        function deleteStudent(id) {
+            if (confirm('Are you sure you want to remove this student?')) {
+                students = students.filter(student => student.id !== id);
+                saveStudents();
+                renderStudents();
+            }
+        }
+
+        function saveStudents() {
+            localStorage.setItem('students', JSON.stringify(students));
+        }
+
+        function saveCategories() {
+            localStorage.setItem('categories', JSON.stringify(categories));
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStudents();
+            renderCategories();
+        });
+    </script>
+</body>
+</html>
